@@ -1,0 +1,17 @@
+{
+    "printWidth": 80,
+    "trailingComma": "all",
+    "useTabs": false,
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": true,
+    "importOrder": [
+        "^(next/(.*)$)|^(next$)|^(react$)",
+        "<THIRD_PARTY_MODULES>",
+        "^@headlessui/(.*)$",
+        "^(components/(.*)$)|^(features/(.*)$)|^(motions$)|^(assets/(.*)$)|^(utils$)|^(styles/(.*)$)|^(data/(.*)$)|^(types$)",
+        "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
+}

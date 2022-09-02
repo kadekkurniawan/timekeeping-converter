@@ -1,5 +1,6 @@
-import React, { Fragment } from "react";
-import { Transition } from "@headlessui/react";
+import React, { Fragment } from 'react';
+
+import { Transition } from '@headlessui/react';
 
 const ZoomTransition = ({ children }: { children: React.ReactElement }) => {
     return (
