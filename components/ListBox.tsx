@@ -1,16 +1,10 @@
-import { useState } from 'react';
-
 import clsx from 'clsx';
 import { AnimatePresence, Variants, motion } from 'framer-motion';
-import { type } from 'os';
 import { MdCheck, MdOutlineUnfoldMore } from 'react-icons/md';
 
 import { Listbox } from '@headlessui/react';
 
-import { Meridiem, Minute, TwelveHour, TwentyFourHour } from '../types';
-import ZoomTransition from './ZoomTransition';
-
-type Placement = 'top' | 'bottom';
+import { Meridiem, Minute, Placement, TwelveHour, TwentyFourHour } from 'types';
 
 interface ListBoxProps<T> {
     selectedItem: T;
@@ -20,14 +14,16 @@ interface ListBoxProps<T> {
 }
 
 const listVariants: Variants = {
-    hidden: (originPlacement: Placement) => ({
+    closed: {
         opacity: 0,
         height: 0,
-    }),
-    open: (originPlacement: Placement) => ({
+        overflowY: 'hidden',
+    },
+    open: {
         opacity: 1,
         height: 'fit-content',
-    }),
+        overflowY: 'auto',
+    },
 };
 
 const ListBox = <T extends Minute | TwelveHour | TwentyFourHour | Meridiem>({
@@ -47,7 +43,7 @@ const ListBox = <T extends Minute | TwelveHour | TwentyFourHour | Meridiem>({
                             </span>
                             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <MdOutlineUnfoldMore
-                                    className="h-5 w-5 text-gray-400"
+                                    fontSize={16}
                                     aria-hidden="true"
                                 />
                             </span>
@@ -56,17 +52,12 @@ const ListBox = <T extends Minute | TwelveHour | TwentyFourHour | Meridiem>({
                         <AnimatePresence>
                             {open && (
                                 <motion.div
-                                    initial="hidden"
+                                    initial="closed"
                                     animate="open"
-                                    exit="hidden"
+                                    exit="closed"
                                     transition={{
                                         stiffness: 100,
                                     }}
-                                    custom={
-                                        placement === 'bottom'
-                                            ? 'top'
-                                            : 'bottom'
-                                    }
                                     variants={listVariants}
                                     className={clsx(
                                         'absolute max-h-60 w-full overflow-auto rounded-lg bg-slate-700 backdrop-blur-sm shadow-md py-1 text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm',
@@ -95,7 +86,10 @@ const ListBox = <T extends Minute | TwelveHour | TwentyFourHour | Meridiem>({
                                                         {selected && (
                                                             <span className="absolute inset-y-0 left-0 flex items-center pl-1.5 text-blue-500">
                                                                 <MdCheck
-                                                                    className="w-4 h-4"
+                                                                    fontSize={
+                                                                        16
+                                                                    }
+                                                                    color="#2dd4bf"
                                                                     aria-hidden="true"
                                                                 />
                                                             </span>

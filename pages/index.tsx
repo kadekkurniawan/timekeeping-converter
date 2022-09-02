@@ -14,6 +14,7 @@ import TwentyFourHourInput from 'components/TwentyFourHourInput';
 import { MINUTES, TWELVE_HOURS, TWENTY_FOUR_HOURS } from 'data/times';
 import { Meridiem, TwentyFourHour } from 'types';
 import { TwelveHourTime, TwentyFourHourTime } from 'types';
+import { convertTo12HourTime } from 'utils';
 
 const INITIAL_TWENTY_FOUR_HOUR_TIME: TwentyFourHourTime = {
     hour: TWENTY_FOUR_HOURS[0],
@@ -25,6 +26,8 @@ const INITIAL_TWELVE_HOUR_TIME: TwelveHourTime = {
     minute: MINUTES[0],
     meridiem: Meridiem.AM,
 };
+
+// TODO fix infinite loop causes by the useUpdateEffect
 
 const Home: NextPage = () => {
     const [
@@ -39,16 +42,19 @@ const Home: NextPage = () => {
 
     // format from 24 hour time to 12 hour time
     useUpdateEffect(() => {
-        // const convertedTime = convertTo24HourTime();
-    }, [twentyFourHourTime]);
+        const convertedTo12HourTime = convertTo12HourTime(twentyFourHourTime);
+
+        setTwelveHourTime(convertedTo12HourTime);
+    }, [twentyFourHourTime, setTwelveHourTime]);
 
     // format from 12 hour time to 24 hour time
     useUpdateEffect(() => {
-        const convertedToTwentyFourHourTime =
-            convertTo24HourTime(twelveHourTime);
+        const convertedTo24HourTime = convertTo24HourTime(twelveHourTime);
 
-        setTwentyFourHourTime(convertedToTwentyFourHourTime);
-    }, [twelveHourTime]);
+        setTwentyFourHourTime(convertedTo24HourTime);
+    }, [twelveHourTime, setTwentyFourHourTime]);
+
+    console.log('rerendered!');
 
     return (
         <>

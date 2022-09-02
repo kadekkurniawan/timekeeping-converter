@@ -1,23 +1,14 @@
-import { useRef } from 'react';
-
 import { AnimatePresence, Variants } from 'framer-motion';
 import { motion } from 'framer-motion';
+import { zoomAnimations } from 'lib/zoomAnimations';
 import { MdOutlineSchedule } from 'react-icons/md';
 
 import { Popover } from '@headlessui/react';
 
-import { MINUTES, TWENTY_FOUR_HOURS } from '../data/times';
-import { leftToRightSlideAnimations } from '../lib/leftToRightSlideAnimations';
-import {
-    Meridiem,
-    Minute,
-    TwelveHourTime,
-    TwentyFourHour,
-    TwentyFourHourTime,
-} from '../types';
-import ButtonPrimary from './ButtonPrimary';
+import { MINUTES, TWENTY_FOUR_HOURS } from 'data/times';
+import { Minute, TwentyFourHour, TwentyFourHourTime } from 'types';
+
 import ListBox from './ListBox';
-import ZoomTransition from './ZoomTransition';
 
 // framer motion variants naming guidlines: hidden, open, close
 
@@ -48,8 +39,9 @@ const TwentyFourHourInput = ({
                     <AnimatePresence>
                         {open && (
                             <motion.div
-                                className="absolute bg-slate-800/50 right-1/2 p-4 shadow-lg backdrop-blur bottom-12 rounded-lg z-10"
-                                {...leftToRightSlideAnimations}
+                                className="absolute bg-slate-800/50 left-1/2 -translate-x-1/2 p-4 shadow-lg backdrop-blur bottom-12 rounded-lg z-10"
+                                {...zoomAnimations}
+                                custom="bottom"
                             >
                                 <Popover.Panel
                                     className="flex items-center gap-x-3"

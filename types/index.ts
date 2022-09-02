@@ -104,4 +104,4 @@ export interface TwelveHourTime {
     meridiem: Meridiem;
 }
 
-export type ValueOf<T> = T[keyof T];
+export type Placement = 'top' | 'bottom';
