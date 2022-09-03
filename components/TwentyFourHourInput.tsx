@@ -29,7 +29,7 @@ const TwentyFourHourInput = ({
                 <>
                     <Popover.Button className="relative py-2 px-3 rounded-lg focus:outline-none bg-slate-800 w-full">
                         <span className="font-medium text-gray-300">
-                            {initialTime.hour} : {initialTime.minute}{' '}
+                            {initialTime.hour}:{initialTime.minute}
                         </span>
                         <span className="absolute right-0 inset-y-0 aspect-square grid place-items-center">
                             <MdOutlineSchedule className="pointer-events-none" />
