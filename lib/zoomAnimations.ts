@@ -16,7 +16,7 @@ const zoomVariants: Variants = {
         x: '-50%',
     },
     close: (placement: Placement) => ({
-        y: placement === 'top' ? '-3' : '3',
+        y: placement === 'top' ? '-4' : '4',
         scale: 0.98,
         opacity: 0,
         x: '-50%',

@@ -92,3 +92,9 @@ export const TWENTY_FOUR_HOURS: TwentyFourHour[] = [
     '22',
     '23',
 ];
+
+export const MID_DAY = '12';
+
+export const MID_NIGHT = '00';
+
+export const DECIMAL = 10;

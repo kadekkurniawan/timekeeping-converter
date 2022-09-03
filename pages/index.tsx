@@ -12,7 +12,7 @@ import Label from 'components/Label';
 import TwelveHourInput from 'components/TwelveHourInput';
 import TwentyFourHourInput from 'components/TwentyFourHourInput';
 import { MINUTES, TWELVE_HOURS, TWENTY_FOUR_HOURS } from 'data/times';
-import { Meridiem, TwentyFourHour } from 'types';
+import { Meridiem, Minute, TwelveHour, TwentyFourHour } from 'types';
 import { TwelveHourTime, TwentyFourHourTime } from 'types';
 import { convertTo12HourTime } from 'utils';
 
@@ -20,48 +20,41 @@ const INITIAL_TWENTY_FOUR_HOUR_TIME: TwentyFourHourTime = {
     hour: TWENTY_FOUR_HOURS[0],
     minute: MINUTES[0],
 };
-
 const INITIAL_TWELVE_HOUR_TIME: TwelveHourTime = {
     hour: TWELVE_HOURS[TWELVE_HOURS.length - 1],
     minute: MINUTES[0],
     meridiem: Meridiem.AM,
 };
 
-// TODO fix infinite loop causes by the useUpdateEffect
-
 const Home: NextPage = () => {
-    const [
-        twentyFourHourTime,
-        { set: setTwentyFourHourTimeProperty, setAll: setTwentyFourHourTime },
-    ] = useMap<TwentyFourHourTime>(INITIAL_TWENTY_FOUR_HOUR_TIME);
+    const [twentyFourHourTime, { setAll: setTwentyFourHourTime }] =
+        useMap<TwentyFourHourTime>(INITIAL_TWENTY_FOUR_HOUR_TIME);
 
-    const [
-        twelveHourTime,
-        { set: setTwelveHourTimeProperty, setAll: setTwelveHourTime },
-    ] = useMap<TwelveHourTime>(INITIAL_TWELVE_HOUR_TIME);
+    const [twelveHourTime, { setAll: setTwelveHourTime }] =
+        useMap<TwelveHourTime>(INITIAL_TWELVE_HOUR_TIME);
 
-    // format from 24 hour time to 12 hour time
-    useUpdateEffect(() => {
-        const convertedTo12HourTime = convertTo12HourTime(twentyFourHourTime);
+    const handleTwentyFourHourTimeChange = (
+        new24HourTime: TwentyFourHourTime,
+    ) => {
+        const convertedTo12HourTime = convertTo12HourTime(new24HourTime);
 
+        setTwentyFourHourTime(new24HourTime);
         setTwelveHourTime(convertedTo12HourTime);
-    }, [twentyFourHourTime, setTwelveHourTime]);
+    };
 
-    // format from 12 hour time to 24 hour time
-    useUpdateEffect(() => {
-        const convertedTo24HourTime = convertTo24HourTime(twelveHourTime);
+    const handleTwelveHourTimeChange = (new12HourTime: TwelveHourTime) => {
+        const convertedTo24HourTime = convertTo24HourTime(new12HourTime);
 
         setTwentyFourHourTime(convertedTo24HourTime);
-    }, [twelveHourTime, setTwentyFourHourTime]);
+        setTwelveHourTime(new12HourTime);
+    };
 
     console.log('rerendered!');
-
     return (
         <>
             <Head>
                 <title>12 Hour from to 24 Hour (Converter)</title>
             </Head>
-
             <main className="grid place-items-center h-full">
                 <div className="grid cols-1 w-9/12 max-w-sm gap-4 shadow-lg p-4">
                     <div className="grid gap-y-1 place-items-center">
@@ -69,29 +62,42 @@ const Home: NextPage = () => {
                         <TwentyFourHourInput
                             initialTime={twentyFourHourTime}
                             onChangeHour={(hour) =>
-                                setTwentyFourHourTimeProperty('hour', hour)
+                                handleTwentyFourHourTimeChange({
+                                    ...twentyFourHourTime,
+                                    hour,
+                                })
                             }
                             onChangeMinute={(minute) =>
-                                setTwentyFourHourTimeProperty('minute', minute)
+                                handleTwentyFourHourTimeChange({
+                                    ...twentyFourHourTime,
+                                    minute,
+                                })
                             }
                         />
                     </div>
-
                     <div className="grid place-items-center">
                         <FaExchangeAlt color="#2dd4bf" />
                     </div>
-
                     <div className="grid gap-y-1 place-items-center">
                         <TwelveHourInput
                             initialTime={twelveHourTime}
                             onChangeHour={(hour) =>
-                                setTwelveHourTimeProperty('hour', hour)
+                                handleTwelveHourTimeChange({
+                                    ...twelveHourTime,
+                                    hour,
+                                })
                             }
                             onChangeMinute={(minute) =>
-                                setTwelveHourTimeProperty('minute', minute)
+                                handleTwelveHourTimeChange({
+                                    ...twelveHourTime,
+                                    minute,
+                                })
                             }
                             onChangeMeridiem={(meridiem) =>
-                                setTwelveHourTimeProperty('meridiem', meridiem)
+                                handleTwelveHourTimeChange({
+                                    ...twelveHourTime,
+                                    meridiem,
+                                })
                             }
                         />
                         <Label text="12-hour Time" id="twelve-hour-time" />
@@ -101,5 +107,4 @@ const Home: NextPage = () => {
         </>
     );
 };
-
 export default Home;
