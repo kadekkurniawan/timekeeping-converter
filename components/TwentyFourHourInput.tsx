@@ -10,7 +10,7 @@ import { Minute, TwentyFourHour, TwentyFourHourTime } from 'types';
 
 import ListBox from './ListBox';
 
-// framer motion variants naming guidlines: hidden, open, close
+// framer motion variants naming guidlines: closed, open, close
 
 interface TwentyFourHourInputProps {
     initialTime: TwentyFourHourTime;

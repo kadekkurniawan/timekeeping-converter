@@ -53,8 +53,9 @@ const Home: NextPage = () => {
     return (
         <>
             <Head>
-                <title>12 Hour from to 24 Hour (Converter)</title>
+                <title>12hour-24hour Converter</title>
             </Head>
+
             <main className="grid place-items-center h-full">
                 <div className="grid cols-1 w-9/12 max-w-sm gap-4 shadow-lg p-4">
                     <div className="grid gap-y-1 place-items-center">

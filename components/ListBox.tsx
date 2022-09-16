@@ -17,12 +17,16 @@ const listVariants: Variants = {
     closed: {
         opacity: 0,
         height: 0,
-        overflowY: 'hidden',
+        transition: {
+            stiffness: 100,
+        },
     },
     open: {
         opacity: 1,
-        height: 'fit-content',
-        overflowY: 'auto',
+        height: 'auto',
+        transition: {
+            stiffness: 100,
+        },
     },
 };
 
@@ -55,9 +59,6 @@ const ListBox = <T extends Minute | TwelveHour | TwentyFourHour | Meridiem>({
                                     initial="closed"
                                     animate="open"
                                     exit="closed"
-                                    transition={{
-                                        stiffness: 100,
-                                    }}
                                     variants={listVariants}
                                     className={clsx(
                                         'absolute max-h-60 w-full overflow-auto rounded-lg bg-slate-700 backdrop-blur-sm shadow-md py-1 text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm',
