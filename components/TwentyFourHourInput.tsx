@@ -12,13 +12,13 @@ import Combobox from './Combobox';
 
 interface TwentyFourHourInputProps {
   initialTime: TwentyFourHourTime;
-  onChangeMinute: (minute: Minute) => void;
-  onChangeHour: (hour: TwentyFourHour) => void;
+  onMinuteChange: (minute: Minute) => void;
+  onHourChange: (hour: TwentyFourHour) => void;
 }
 
 const TwentyFourHourInput = ({
-  onChangeHour,
-  onChangeMinute,
+  onHourChange,
+  onMinuteChange,
   initialTime,
 }: TwentyFourHourInputProps) => {
   return (
@@ -46,7 +46,7 @@ const TwentyFourHourInput = ({
                     <Combobox
                       selectedItem={initialTime.hour}
                       items={TWENTY_FOUR_HOURS}
-                      onChange={onChangeHour}
+                      onChange={onHourChange}
                       placement="top"
                     />
                   </div>
@@ -57,7 +57,7 @@ const TwentyFourHourInput = ({
                     <Combobox
                       selectedItem={initialTime.minute}
                       items={MINUTES}
-                      onChange={onChangeMinute}
+                      onChange={onMinuteChange}
                       placement="top"
                     />
                   </div>

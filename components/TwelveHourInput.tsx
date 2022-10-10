@@ -13,14 +13,14 @@ import ListBox from './ListBox';
 
 interface TwelveHourInputProps {
   initialTime: TwelveHourTime;
-  onChangeMinute: (minute: Minute) => void;
-  onChangeHour: (hour: TwelveHour) => void;
+  onMinuteChange: (minute: Minute) => void;
+  onHourChange: (hour: TwelveHour) => void;
   onChangeMeridiem: (meridiem: Meridiem) => void;
 }
 
 const TwelveHourInput = ({
-  onChangeHour,
-  onChangeMinute,
+  onHourChange,
+  onMinuteChange,
   initialTime,
   onChangeMeridiem,
 }: TwelveHourInputProps) => {
@@ -49,7 +49,7 @@ const TwelveHourInput = ({
                     <Combobox
                       selectedItem={initialTime.hour}
                       items={TWELVE_HOURS}
-                      onChange={onChangeHour}
+                      onChange={onHourChange}
                     />
                   </div>
                   <span className="text-gray-400 cursor-default select-none text-lg">
@@ -59,7 +59,7 @@ const TwelveHourInput = ({
                     <Combobox
                       selectedItem={initialTime.minute}
                       items={MINUTES}
-                      onChange={onChangeMinute}
+                      onChange={onMinuteChange}
                     />
                   </div>
 

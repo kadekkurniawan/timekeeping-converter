@@ -13,12 +13,12 @@ import { TwelveHourTime, TwentyFourHourTime } from 'types';
 import { convertTo12HourTime } from 'utils';
 
 const INITIAL_TWENTY_FOUR_HOUR_TIME: TwentyFourHourTime = {
-  hour: TWENTY_FOUR_HOURS[0],
-  minute: MINUTES[0],
+  hour: TwentyFourHour.ZERO,
+  minute: Minute.ZERO,
 };
 const INITIAL_TWELVE_HOUR_TIME: TwelveHourTime = {
-  hour: TWELVE_HOURS[TWELVE_HOURS.length - 1],
-  minute: MINUTES[0],
+  hour: TwelveHour.TWELVE,
+  minute: Minute.ZERO,
   meridiem: Meridiem.AM,
 };
 
@@ -45,48 +45,25 @@ const Home: NextPage = () => {
     setTwelveHourTime(new12HourTime);
   };
 
-  console.log('rerendered!');
   return (
     <>
       <Head>
         <title>12hour-24hour Converter</title>
       </Head>
 
-      <main className="grid place-items-center h-full">
+      <main className="grid place-items-center h-screen">
         <div className="grid cols-1 w-9/12 max-w-sm gap-4 shadow-lg p-4">
           <div className="grid gap-y-1 place-items-center">
-            <span className="text-slate-400 font-medium text-sm">
-              24-hour Time
-            </span>
-            <TwentyFourHourInput
-              initialTime={twentyFourHourTime}
-              onChangeHour={(hour) =>
-                handleTwentyFourHourTimeChange({
-                  ...twentyFourHourTime,
-                  hour,
-                })
-              }
-              onChangeMinute={(minute) =>
-                handleTwentyFourHourTimeChange({
-                  ...twentyFourHourTime,
-                  minute,
-                })
-              }
-            />
-          </div>
-          <div className="grid place-items-center">
-            <FaExchangeAlt color="#2dd4bf" />
-          </div>
-          <div className="grid gap-y-1 place-items-center">
+            <p className="text-slate-400 font-medium text-sm">12-hour Time</p>
             <TwelveHourInput
               initialTime={twelveHourTime}
-              onChangeHour={(hour) =>
+              onHourChange={(hour) =>
                 handleTwelveHourTimeChange({
                   ...twelveHourTime,
                   hour,
                 })
               }
-              onChangeMinute={(minute) =>
+              onMinuteChange={(minute) =>
                 handleTwelveHourTimeChange({
                   ...twelveHourTime,
                   minute,
@@ -99,9 +76,28 @@ const Home: NextPage = () => {
                 })
               }
             />
-            <span className="text-slate-400 font-medium text-sm">
-              12-hour Time
-            </span>
+          </div>
+          <div className="grid place-items-center">
+            <FaExchangeAlt color="#2dd4bf" />
+          </div>
+          <div className="grid gap-y-1 place-items-center">
+            <TwentyFourHourInput
+              initialTime={twentyFourHourTime}
+              onHourChange={(hour) =>
+                handleTwentyFourHourTimeChange({
+                  ...twentyFourHourTime,
+                  hour,
+                })
+              }
+              onMinuteChange={(minute) =>
+                handleTwentyFourHourTimeChange({
+                  ...twentyFourHourTime,
+                  minute,
+                })
+              }
+            />
+
+            <p className="text-slate-400 font-medium text-sm">24-hour Time</p>
           </div>
         </div>
       </main>
