@@ -5,19 +5,25 @@ import { MdOutlineCheck, MdOutlineUnfoldMore } from 'react-icons/md';
 
 import { Listbox } from '@headlessui/react';
 
-import { Meridiem, Minute, Placement, TwelveHour, TwentyFourHour } from 'types';
+import {
+  DropdownPlacement,
+  Meridiem,
+  Minute,
+  TwelveHour,
+  TwentyFourHour,
+} from 'types';
 
 interface ListBoxProps<T> {
   selectedItem: T;
   items: T[];
-  placement?: Placement;
+  dropdownPlacement?: DropdownPlacement;
   onChange: (value: T) => void;
 }
 
 const ListBox = <T extends Minute | TwelveHour | TwentyFourHour | Meridiem>({
   selectedItem,
   items,
-  placement = 'bottom',
+  dropdownPlacement = DropdownPlacement.BOTTOM,
   onChange,
 }: ListBoxProps<T>) => {
   return (
@@ -25,12 +31,16 @@ const ListBox = <T extends Minute | TwelveHour | TwentyFourHour | Meridiem>({
       <Listbox value={selectedItem} onChange={onChange}>
         {({ open }) => (
           <>
-            <Listbox.Button className="relative focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 w-full cursor-pointer rounded-lg bg-slate-700 py-2 pl-3 pr-10 text-left shadow-md sm:text-sm">
+            <Listbox.Button className="relative group focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 w-full cursor-pointer rounded-lg bg-slate-700 py-2 pl-3 pr-10 text-left shadow-md sm:text-sm">
               <span className="block truncate text-gray-300">
                 {selectedItem}
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                <MdOutlineUnfoldMore fontSize={16} aria-hidden="true" />
+                <MdOutlineUnfoldMore
+                  className="group-hover:text-slate-500 hover-transition"
+                  fontSize={16}
+                  aria-hidden="true"
+                />
               </span>
             </Listbox.Button>
 
@@ -41,8 +51,8 @@ const ListBox = <T extends Minute | TwelveHour | TwentyFourHour | Meridiem>({
                   className={clsx(
                     'absolute max-h-60 w-full overflow-auto rounded-lg bg-slate-700 backdrop-blur-sm shadow-md py-1 text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm',
                     {
-                      'top-11': placement === 'bottom',
-                      'bottom-11': placement === 'top',
+                      'top-11': dropdownPlacement === DropdownPlacement.BOTTOM,
+                      'bottom-11': dropdownPlacement === DropdownPlacement.TOP,
                     },
                   )}
                 >

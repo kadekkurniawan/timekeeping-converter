@@ -120,4 +120,12 @@ export interface TwelveHourTime {
   meridiem: Meridiem;
 }
 
-export type Placement = 'top' | 'bottom';
+export enum DropdownPlacement {
+  TOP = 'top',
+  BOTTOM = 'bottom',
+}
+
+export enum IconPlacement {
+  LEFT = 'left',
+  RIGHT = 'right',
+}

@@ -7,10 +7,10 @@ import { MdOutlineCheck, MdOutlineUnfoldMore } from 'react-icons/md';
 
 import { Combobox as HeadlessCombobox } from '@headlessui/react';
 
-import { Minute, Placement, TwelveHour, TwentyFourHour } from 'types';
+import { DropdownPlacement, Minute, TwelveHour, TwentyFourHour } from 'types';
 
 interface ComboboxProps<T> {
-  placement?: Placement;
+  dropdownPlacement?: DropdownPlacement;
   items: T[];
   selectedItem?: T;
   onChange: (item: T) => void;
@@ -20,7 +20,7 @@ const Combobox = <T extends string | Minute | TwentyFourHour | TwelveHour>({
   items,
   selectedItem = items[0],
   onChange,
-  placement = 'bottom',
+  dropdownPlacement = DropdownPlacement.BOTTOM,
 }: ComboboxProps<T>) => {
   const [querySearch, setQuerySearch] = useState('');
 
@@ -61,8 +61,10 @@ const Combobox = <T extends string | Minute | TwentyFourHour | TwelveHour>({
                 className={clsx(
                   'absolute scrollbar scrollbar-track-slate-800 scrollbar-thumb-slate-600  max-h-56 w-full overflow-y-auto rounded-lg focus:border-slate-700  bg-slate-700 backdrop-blur z-40 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm',
                   {
-                    'top-11 mt-1': placement === 'bottom',
-                    'bottom-11 mb-1': placement === 'top',
+                    'top-11 mt-1':
+                      dropdownPlacement === DropdownPlacement.BOTTOM,
+                    'bottom-11 mb-1':
+                      dropdownPlacement === DropdownPlacement.TOP,
                   },
                 )}
               >

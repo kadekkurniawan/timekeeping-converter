@@ -1,6 +1,6 @@
 import { MotionProps, Variants } from 'framer-motion';
 
-const listBoxVariants: Variants = {
+export const listBoxVariants: Variants = {
   closed: {
     opacity: 0,
     height: 0,

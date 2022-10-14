@@ -1,31 +1,19 @@
 import { MotionProps, Variants } from 'framer-motion';
 
-import { Placement } from 'types';
-
 const zoomVariants: Variants = {
-    closed: (placement: Placement) => ({
-        y: placement === 'top' ? '-10' : '10',
-        scale: 0.95,
-        opacity: 0,
-        x: '-50%',
-    }),
-    open: {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        x: '-50%',
-    },
-    close: (placement: Placement) => ({
-        y: placement === 'top' ? '-4' : '4',
-        scale: 0.98,
-        opacity: 0,
-        x: '-50%',
-    }),
+  closed: {
+    scale: 0.95,
+    opacity: 0,
+  },
+  open: {
+    scale: 1,
+    opacity: 1,
+  },
 };
 
 export const zoomAnimations: MotionProps = {
-    initial: 'closed',
-    animate: 'open',
-    exit: 'close',
-    variants: zoomVariants,
+  initial: 'closed',
+  animate: 'open',
+  exit: 'closed',
+  variants: zoomVariants,
 };
