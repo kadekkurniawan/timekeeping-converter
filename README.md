@@ -14,7 +14,7 @@ A website that take a time input in 12-hour time format, and convert them into 2
 
 ## Demo
 
-view this project at: [Quick Dictionary](https://12hour-24hour-converter.vercel.app/)
+view this project at: [12hour-24hour Converter](https://12hour-24hour-converter.vercel.app/)
 
 ## Setup
 
