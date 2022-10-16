@@ -30,4 +30,4 @@ After the installation has finished, you will need to run the following script i
 npm run dev
 ```
 
-Once the server is running, go to http://localhost:3000 in your browser.
+Once the server is running, go to http://localhost:3000/ in your browser.
