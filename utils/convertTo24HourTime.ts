@@ -13,28 +13,24 @@ export const convertTo24HourTime = (
 
   if (hour === MID_DAY && meridiem === Meridiem.AM)
     return {
-      hour: '00',
+      hour: TwentyFourHour.ZERO,
       minute,
     };
 
   if (hour === MID_DAY && meridiem === Meridiem.PM)
     return {
-      hour: '12',
+      hour: TwentyFourHour.TWELVE,
       minute,
     };
 
   if (parseInt(hour, DECIMAL) < parseInt(MID_DAY) && meridiem === Meridiem.AM)
     return {
-      hour,
+      hour: hour as unknown as TwentyFourHour,
       minute,
     };
 
-  const formattedToTwelveHour = String(
-    parseInt(hour, DECIMAL) + parseInt(MID_DAY),
-  ) as TwentyFourHour;
-
   return {
-    hour: formattedToTwelveHour,
+    hour: String(parseInt(hour, DECIMAL) + parseInt(MID_DAY)) as TwentyFourHour,
     minute,
   };
 };

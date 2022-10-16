@@ -13,31 +13,30 @@ export const convertTo12HourTime = (
 
   if (hour === MID_NIGHT)
     return {
-      hour: '12',
+      hour: TwelveHour.TWELVE,
       minute,
       meridiem: Meridiem.AM,
     };
 
   if (hour === String(MID_DAY))
     return {
-      hour: '12',
+      hour: TwelveHour.TWELVE,
       minute,
       meridiem: Meridiem.PM,
     };
 
   if (parseInt(hour, DECIMAL) < parseInt(MID_DAY))
     return {
-      hour: hour as TwelveHour,
+      hour: hour as unknown as TwelveHour,
       minute,
       meridiem: Meridiem.AM,
     };
 
-  const formattedToTwelveHour = String(
-    parseInt(hour, DECIMAL) - parseInt(MID_DAY),
-  ).padStart(2, '0') as TwelveHour;
-
   return {
-    hour: formattedToTwelveHour,
+    hour: String(parseInt(hour, DECIMAL) - parseInt(MID_DAY)).padStart(
+      2,
+      '0',
+    ) as TwelveHour,
     minute,
     meridiem: Meridiem.PM,
   };
