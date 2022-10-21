@@ -58,6 +58,7 @@ const TwelveHourTimePickable = ({
             >
               <MdOutlineSchedule
                 size={18}
+                aria-hidden="true"
                 className="pointer-events-none group-hover:text-slate-500 hover-transition"
               />
             </span>
@@ -80,25 +81,25 @@ const TwelveHourTimePickable = ({
                   className="flex items-center gap-x-3"
                   static
                 >
-                  <div className="w-20">
+                  <time className="w-20">
                     <Combobox
                       selectedItem={initialTime.hour}
                       items={TWELVE_HOURS}
                       onChange={onHourChange}
                       dropdownPlacement={dropdownPlacement}
                     />
-                  </div>
+                  </time>
                   <span className="text-gray-400 cursor-default select-none text-lg">
                     :
                   </span>
-                  <div className="w-20">
+                  <time className="w-20">
                     <Combobox
                       selectedItem={initialTime.minute}
                       items={MINUTES}
                       onChange={onMinuteChange}
                       dropdownPlacement={dropdownPlacement}
                     />
-                  </div>
+                  </time>
 
                   <ListBox
                     selectedItem={initialTime.meridiem}

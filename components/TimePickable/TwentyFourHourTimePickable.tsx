@@ -42,23 +42,23 @@ const TwentyFourHourTimePickable = ({
               <div className="absolute bg-slate-800/50 left-1/2 w-fit top-11 -translate-x-1/2 p-4 shadow-lg backdrop-blur rounded-lg z-10">
                 <motion.div {...zoomAnimations}>
                   <Popover.Panel className="flex items-center gap-x-3" static>
-                    <div className="w-20">
+                    <time className="w-20">
                       <Combobox
                         selectedItem={initialTime.hour}
                         items={TWENTY_FOUR_HOURS}
                         onChange={onHourChange}
                       />
-                    </div>
+                    </time>
                     <span className="text-gray-400 select-none cursor-default text-lg">
                       :
                     </span>
-                    <div className="w-20">
+                    <time className="w-20">
                       <Combobox
                         selectedItem={initialTime.minute}
                         items={MINUTES}
                         onChange={onMinuteChange}
                       />
-                    </div>
+                    </time>
                   </Popover.Panel>
                 </motion.div>
               </div>
