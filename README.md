@@ -16,7 +16,7 @@
 
 ## General Information
 
-This is a website where you can convert `12-hour time format`, into `24-hour time format` and vise versa.
+This is a website where you can convert `12-hour time format`, into `24-hour time format` and vice versa.
 
 ## Setup
 
