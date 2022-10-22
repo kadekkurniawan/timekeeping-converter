@@ -6,7 +6,7 @@
 ## Technologies Used
 
 - [Next.js](https://nextjs.org/)
-- [Typescript]()
+- [Typescript](https://www.typescriptlang.org/)
 - [Tailwindcss](https://tailwindcss.com/)
 - [headlessui](https://headlessui.com/)
 - [Framer Motion](https://www.framer.com/)
@@ -20,7 +20,7 @@ This is a website where you can convert `12-hour time format`, into `24-hour tim
 
 ## Setup
 
-After you fork this project, navigate to the repository and then open the command line, and install the necessary packages:
+After you fork this project, navigate to the project, and then open the command line and install the necessary packages:
 
 ```sh
 npm install
