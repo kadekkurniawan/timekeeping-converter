@@ -1,10 +1,12 @@
 # 12hour-24hour Converter
 
-A website that take a time input in 12-hour time format, and convert them into 24-hour time format and vice versa
+> 12-hour to from 24-hour time converter
+> Live demo [here.](https://12hour-24hour-converter.vercel.app/)
 
-## Build With
+## Technologies Used
 
 - [Next.js](https://nextjs.org/)
+- [Typescript]()
 - [Tailwindcss](https://tailwindcss.com/)
 - [headlessui](https://headlessui.com/)
 - [Framer Motion](https://www.framer.com/)
@@ -12,9 +14,9 @@ A website that take a time input in 12-hour time format, and convert them into 2
 - [clsx](https://github.com/lukeed/clsx)
 - [react-use](https://github.com/streamich/react-use)
 
-## Demo
+## General Information
 
-view this project at: [12hour-24hour Converter](https://12hour-24hour-converter.vercel.app/)
+This is a website where you can convert `12-hour time format`, into `24-hour time format` and vise versa.
 
 ## Setup
 
