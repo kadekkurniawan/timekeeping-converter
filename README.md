@@ -1,4 +1,4 @@
-# 12hour-24hour Converter
+# Timekeeping Converter
 
 > 12-hour to from 24-hour time converter.
 > Live demo [here.](https://12hour-24hour-converter.vercel.app/)
